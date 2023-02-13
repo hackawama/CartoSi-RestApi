@@ -4,8 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.*;
 
 //REviewed
 @Entity
@@ -17,11 +18,6 @@ public class Structure {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String label;
-    @ManyToMany
-    private List<Hardware> hardwares;
-    @ManyToMany
-    private List<Software> softwares;
-
-    private byte[] image;
-
+    @OneToMany(mappedBy = "structure")
+    private List<Building> buildings;
 }

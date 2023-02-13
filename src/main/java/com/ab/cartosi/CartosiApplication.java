@@ -9,6 +9,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.ab.cartosi.entities.Role;
+
+import com.ab.cartosi.repositories.BuildingRepo;
+import com.ab.cartosi.repositories.RooRepo;
+import com.ab.cartosi.repositories.StageRepo;
+import com.ab.cartosi.repositories.StructureRepo;
+import com.ab.cartosi.repositories.devices.ComputerRepo;
+import com.ab.cartosi.repositories.devices.PhoneRepo;
+import com.ab.cartosi.repositories.devices.SwitchRepo;
 import com.ab.cartosi.service.AccountService;
 
 @SpringBootApplication
@@ -20,8 +28,11 @@ public class CartosiApplication {
 	}
 
 	@Bean
-	CommandLineRunner start(AccountService aService) {
+	CommandLineRunner start(AccountService aService, StructureRepo structureRepo, BuildingRepo buildingRepo,
+			StageRepo stageRepo, RooRepo rooRepo, ComputerRepo computerRepo, PhoneRepo phoneRepo,
+			SwitchRepo switchRepo) {
 		return args -> {
+
 			aService.intialStrucutres();
 			Role aRole = aService.loadRoleByName("ADMIN");
 			if (aRole == null) {

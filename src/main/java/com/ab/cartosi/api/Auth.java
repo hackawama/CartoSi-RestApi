@@ -50,7 +50,7 @@ public class Auth {
         JwtClaimsSet claimsSet = JwtClaimsSet.builder()
                 .subject(auth.getName())
                 .issuedAt(instant)
-                .expiresAt(instant.plus(60, ChronoUnit.MINUTES))
+                .expiresAt(instant.plus(800000, ChronoUnit.MINUTES))
                 .issuer("security-service")
                 .claim("scope", scope)
                 .claim("strucure", appUser.getStructure().getLabel())
